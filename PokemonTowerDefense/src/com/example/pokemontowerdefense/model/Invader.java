@@ -2,7 +2,7 @@ package com.example.pokemontowerdefense.model;
 
 import android.content.Context;
 
-public class Invader extends Pokemon
+public class Invader extends Pokemon implements Droppable
 {
 
 	public Invader(int id, Context myContext)
@@ -15,6 +15,12 @@ public class Invader extends Pokemon
 	 */
 	public void move()
 	{
+		
+	}
+	@Override
+	public void getDropItem()
+	{
+		// TODO Auto-generated method stub
 		
 	}
 	

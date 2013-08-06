@@ -19,6 +19,7 @@ public abstract class Pokemon extends TDObject
 	private int specialAttack; 
 	private int specialDefense; 
 	private int speed; 
+	private int level; 
 	
 	/**
 	 * Constructs a pokemon with a given id. The stats and name will be established. 
@@ -27,7 +28,7 @@ public abstract class Pokemon extends TDObject
 	 */
 	public Pokemon(int id, Context myContext)
 	{
-		
+		this.level = 0; 
 		BufferedReader br = null;
 		try
 		{

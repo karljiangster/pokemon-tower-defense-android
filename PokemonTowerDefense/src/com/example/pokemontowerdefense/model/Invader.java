@@ -4,6 +4,8 @@ import android.content.Context;
 
 public class Invader extends Pokemon implements Droppable
 {
+	int gold; 
+
 
 	public Invader(int id, Context myContext)
 	{

@@ -23,7 +23,7 @@ public class LevelOne extends Activity
 	 */
 	private void setupActionBar()
 	{
-
+		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}

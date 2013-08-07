@@ -5,6 +5,7 @@ public abstract class DropObjectTD implements Droppable
 
 	public int hp; 
 	public int goldDropped;
+	int defenseGeneral; 
 	
 	
 	public DropObjectTD(int hp, int goldDropped)
@@ -13,7 +14,7 @@ public abstract class DropObjectTD implements Droppable
 		this.goldDropped = goldDropped;
 	}
 
-
+	
 	@Override
 	public void getDropItem()
 	{

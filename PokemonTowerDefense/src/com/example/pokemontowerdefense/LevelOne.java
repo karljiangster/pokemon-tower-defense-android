@@ -1,5 +1,8 @@
 package com.example.pokemontowerdefense;
 
+import com.example.pokemontowerdefense.model.Move;
+import com.example.pokemontowerdefense.model.Tower;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -16,6 +19,12 @@ public class LevelOne extends Activity
 		setContentView(R.layout.activity_level_one);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		Tower Pika = new Tower(26, LevelOne.this);
+		System.out.println(Pika);
+		Move waterGun = new Move("fire blast", LevelOne.this); 
+		System.out.println(waterGun);
+		
 	}
 
 	/**

@@ -14,6 +14,7 @@ public class Move
 	private int power; 
 	private int accuracy; 
 	private String description; 
+	String [] pokeStats;
 	
 	/**
 	 * 
@@ -36,18 +37,24 @@ public class Move
 			
 			while ((sCurrentLine = br.readLine()) != null)
 			{
-				String [] pokeStats = sCurrentLine.split("\t"); 
-				
+				pokeStats = sCurrentLine.split("\t"); 
+				for(int i = 0; i < pokeStats.length; ++i)
+				{
+					pokeStats[i] = pokeStats[i].toLowerCase(); 
+				}
 				if(pokeStats[0].equals(name))
 				{
 				
 					this.type = pokeStats[1];
-					this.category = pokeStats[2];
-					this.power = Integer.parseInt(pokeStats[3]);
+					this.setCategory(pokeStats[2]);
+					this.setPower(Integer.parseInt(pokeStats[3]));
 					this.accuracy = Integer.parseInt(pokeStats[4]);
-					this.description = pokeStats[5];
-					
+					this.description = pokeStats[7];
+					break;
+					//the break is needed because in the toString if 
+					//the break wasn't there the last name in the list would be printed... c(^~^)b
 				}
+				 
 
 			}
 
@@ -66,5 +73,24 @@ public class Move
 			}
 		}
 	}
-	
+	public String toString()
+	{
+		return pokeStats[0] + " " + type + getCategory() + getPower() + accuracy + " description: " + description;
+	}
+	public int getPower()
+	{
+		return power;
+	}
+	public void setPower(int power)
+	{
+		this.power = power;
+	}
+	public String getCategory()
+	{
+		return category;
+	}
+	public void setCategory(String category)
+	{
+		this.category = category;
+	}
 }

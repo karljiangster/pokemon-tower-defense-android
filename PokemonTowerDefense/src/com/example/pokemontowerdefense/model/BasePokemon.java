@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -19,10 +20,11 @@ public abstract class BasePokemon
 	private int basespecialAttack;
 	private int basespecialDefense;
 	private int basespeed;
-	private int baselevel;
+	private int level;
 	private SingleType type;
 	public String stringType; 
 	private SingleType type2; 
+	ArrayList<Move> moveBank; 
 	
 	
 	public SingleType getType2()
@@ -70,8 +72,11 @@ public abstract class BasePokemon
 	{
 
 		this.baseid = id; 
-		this.baselevel = 1;
+		this.level = 1;
+		//adds type aspect to the BasePokemon
 		dealWithTypes(myContext); 
+		//adds technique aspect to pokemon
+		movesToLearn(myContext); 
 		BufferedReader br = null;
 		try
 		{
@@ -122,7 +127,7 @@ public abstract class BasePokemon
 		
 	}
 	/**
-	 * 
+	 * does type stuff
 	 * @param myContext
 	 */
 	public void dealWithTypes(Context myContext)
@@ -172,103 +177,161 @@ public abstract class BasePokemon
 			}
 		}
 	}
+	
+	/**makes the arrayList field moveBank full of moves that can be used by the pokemon later in the game as it levels up
+	 * 
+	 * @param myContext
+	 * @return the arrayList of moves that can be learned by the specific pokemon
+	 */
+	public ArrayList<Move> movesToLearn(Context myContext)
+	{
+		moveBank = new ArrayList<Move>(); 
+		
+		if(stringType.equals("Grass"))
+		{
+			moveBank.add(new Move("vine whip", myContext)); 
+			moveBank.add(new Move("cotton spore", myContext)); 
+			moveBank.add(new Move("sleep powder", myContext)); 
+			moveBank.add(new Move("needle arm", myContext)); 
+			moveBank.add(new Move("energy ball", myContext));
+			moveBank.add(new Move("seed bomb", myContext));
+			moveBank.add(new Move("wood hammer", myContext)); 
+			moveBank.add(new Move("frenzy plant", myContext)); 
+			
+		}
+		
+		if(stringType.equals("Water"))
+		{
+			moveBank.add(new Move("water gun", myContext)); 
+			moveBank.add(new Move("water pulse", myContext)); 
+			moveBank.add(new Move("razor shell", myContext)); 
+			moveBank.add(new Move("aqua tail", myContext)); 
+			moveBank.add(new Move("surf", myContext));
+			moveBank.add(new Move("hydro pump", myContext));
+			moveBank.add(new Move("hydro cannon", myContext)); 
+			moveBank.add(new Move("water sprout", myContext)); 
+			
+		}
+		
+		if(stringType.equals("Fire"))
+		{
+			moveBank.add(new Move("ember", myContext)); 
+			moveBank.add(new Move("will-o-wisp", myContext)); 
+			moveBank.add(new Move("fire fang", myContext)); 
+			moveBank.add(new Move("fire punch", myContext)); 
+			moveBank.add(new Move("flamethrower", myContext));
+			moveBank.add(new Move("fire blast", myContext));
+			moveBank.add(new Move("overheat", myContext)); 
+			moveBank.add(new Move("blast burn", myContext)); 
+			
+		}
+		
+		if(stringType.equals("Electric"))
+		{
+			moveBank.add(new Move("thundershock", myContext)); 
+			moveBank.add(new Move("thunder wave", myContext)); 
+			moveBank.add(new Move("thunderpunch", myContext)); 
+			moveBank.add(new Move("thunderbolt", myContext)); 
+			moveBank.add(new Move("fusion bolt", myContext));
+			moveBank.add(new Move("thunder", myContext));
+			moveBank.add(new Move("volt tackle", myContext)); 
+			moveBank.add(new Move("bolt strike", myContext)); 
+			
+		}
+		
+		return moveBank; 
+	}
 	public String toString()
 	{
-		return name + " " + "level " + baselevel + " " + "Hit Points " + basehp + " Type " + stringType;
+		return name + " " + "level " + level + " " + "Hit Points " + basehp + " Type " + stringType;
 	}
-	
-	/**
-	 * increases the stats, increments level
-	 */
-
 	public String getName()
 	{
 		return name;
 	}
-
 	public void setName(String name)
 	{
 		this.name = name;
 	}
-
-	public int getId()
+	public int getBaseid()
 	{
 		return baseid;
 	}
-
-	public void setId(int id)
+	public void setBaseid(int baseid)
 	{
-		this.baseid = id;
+		this.baseid = baseid;
 	}
-
-	public int getHp()
+	public int getBasehp()
 	{
 		return basehp;
 	}
-
-	public void setHp(int hp)
+	public void setBasehp(int basehp)
 	{
-		this.basehp = hp;
+		this.basehp = basehp;
 	}
-
-	public int getAttack()
+	public int getBaseattack()
 	{
 		return baseattack;
 	}
-
-	public void setAttack(int attack)
+	public void setBaseattack(int baseattack)
 	{
-		this.baseattack = attack;
+		this.baseattack = baseattack;
 	}
-
-	public int getDefense()
+	public int getBasedefense()
 	{
 		return basedefense;
 	}
-
-	public void setDefense(int defense)
+	public void setBasedefense(int basedefense)
 	{
-		this.basedefense = defense;
+		this.basedefense = basedefense;
 	}
-
-	public int getSpecialAttack()
+	public int getBasespecialAttack()
 	{
 		return basespecialAttack;
 	}
-
-	public void setSpecialAttack(int specialAttack)
+	public void setBasespecialAttack(int basespecialAttack)
 	{
-		this.basespecialAttack = specialAttack;
+		this.basespecialAttack = basespecialAttack;
 	}
-
-	public int getSpecialDefense()
+	public int getBasespecialDefense()
 	{
 		return basespecialDefense;
 	}
-
-	public void setSpecialDefense(int specialDefense)
+	public void setBasespecialDefense(int basespecialDefense)
 	{
-		this.basespecialDefense = specialDefense;
+		this.basespecialDefense = basespecialDefense;
 	}
-
-	public int getSpeed()
+	public int getBasespeed()
 	{
 		return basespeed;
 	}
-
-	public void setSpeed(int speed)
+	public void setBasespeed(int basespeed)
 	{
-		this.basespeed = speed;
+		this.basespeed = basespeed;
 	}
-
 	public int getLevel()
 	{
-		return baselevel;
+		return level;
 	}
-
 	public void setLevel(int level)
 	{
-		this.baselevel = level;
+		this.level = level;
+	}
+	public String getStringType()
+	{
+		return stringType;
+	}
+	public void setStringType(String stringType)
+	{
+		this.stringType = stringType;
+	}
+	public ArrayList<Move> getMoveBank()
+	{
+		return moveBank;
+	}
+	public void setMoveBank(ArrayList<Move> moveBank)
+	{
+		this.moveBank = moveBank;
 	}
 	
 }

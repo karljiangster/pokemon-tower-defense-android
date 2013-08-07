@@ -2,14 +2,19 @@ package com.example.pokemontowerdefense.model;
 
 import android.content.Context;
 
-public class Invader extends BasePokemon implements Droppable
+public class Invader extends Pokemon implements Droppable
 {
 	int gold;
 
-	public Invader(int id, Context myContext)
+	public Invader(int id, Context myContext, int numOfLevelUpsToGetLevel)
 	{
-		super(id, myContext);
-
+		super(id, myContext, 1);
+		int i = getLevel(); 
+		while(i < numOfLevelUpsToGetLevel)
+		{
+			levelUp(); 
+			++i;
+		}
 	}
 
 	/**
@@ -27,7 +32,10 @@ public class Invader extends BasePokemon implements Droppable
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	/**
+	 * Returns the defense depending on the attackTypeString
+	 */
 	public int getFinalDefense(String attackType)
 	{
 		if (attackType.equals("Special"))
@@ -36,6 +44,13 @@ public class Invader extends BasePokemon implements Droppable
 			return getDefense();
 		else
 			return 0;
+	}
+
+	@Override
+	public int getAttacked(int damage)
+	{
+		setHp(getHp() - damage);
+		return getHp(); 
 	}
 	
 

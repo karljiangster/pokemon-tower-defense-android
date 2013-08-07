@@ -1,13 +1,15 @@
 package com.example.pokemontowerdefense;
 
-import com.example.pokemontowerdefense.model.Move;
-import com.example.pokemontowerdefense.model.Tower;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+
+import com.example.pokemontowerdefense.model.Pokemon;
 
 public class LevelOne extends Activity
 {
@@ -20,10 +22,28 @@ public class LevelOne extends Activity
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		Tower Pika = new Tower(26, LevelOne.this);
-		System.out.println(Pika);
-		Move waterGun = new Move("fire blast", LevelOne.this); 
-		System.out.println(waterGun);
+//		Tower Pika = new Tower(25, LevelOne.this, 30);
+//		System.out.println(Pika);
+//		Move waterGun = new Move("fire blast", LevelOne.this); 
+//		System.out.println(waterGun);
+//		Invader Ratata = new Invader(19, LevelOne.this, 30);
+//		System.out.println(Ratata);
+//		Pika.setEquipMove(0);
+//		System.out.println(Pika.attack(Ratata) + " damage on " + Ratata.getName());
+//		System.out.println(Ratata.getAttacked(Pika.attack(Ratata))+ " is the amount of Hp Ratata has left."); 
+		
+		Pokemon pokemon = new Pokemon(1, this, 1);
+	
+		
+		Bitmap bmp = pokemon.getSprite(0);
+		
+		Canvas canvas = new Canvas();
+		
+		Rect srcRect = new Rect(0,0,bmp.getWidth(), bmp.getHeight());
+		Rect destRect = new Rect(0,0,64,64);
+		
+		canvas.drawBitmap(bmp, srcRect,  destRect, null);
+		
 		
 	}
 

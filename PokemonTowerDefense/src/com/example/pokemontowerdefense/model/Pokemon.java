@@ -1,76 +1,137 @@
 package com.example.pokemontowerdefense.model;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
-public abstract class Pokemon extends TDObject
+import com.example.pokemontowerdefense.R;
+
+public class Pokemon extends BasePokemon
 {
-	String name; 
-	private int id; 
-	private int hp; 
-	private int attack; 
-	private int defense; 
-	private int specialAttack; 
-	private int specialDefense; 
-	private int speed; 
-	private int level; 
-	
-	/**
-	 * Constructs a pokemon with a given id. The stats and name will be established. 
-	 * @param id Reads a file and uses the id to find the correct pokemon and its data
-	 * @param myContext	in order to access the AssestsManager. 
-	 */
-	public Pokemon(int id, Context myContext)
+
+	private ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
+
+	private int hp;
+
+	public int getHp()
 	{
-		this.level = 0; 
-		BufferedReader br = null;
-		try
-		{
-
-			String sCurrentLine;
-
-			AssetManager assets = myContext.getAssets();
-			assets.open("stats.txt");
-
-			br = new BufferedReader(new InputStreamReader(
-					assets.open("stats.txt")));
-			
-			while ((sCurrentLine = br.readLine()) != null)
-			{
-				String [] pokeStats = sCurrentLine.split(","); 
-				
-				if(pokeStats[0].equals(Integer.toString(id)))
-				{
-					this.name = pokeStats[1];
-					this.hp = Integer.parseInt(pokeStats[2]);
-					this.attack = Integer.parseInt(pokeStats[3]); 
-					this.defense = Integer.parseInt(pokeStats[4]);
-					this.specialAttack = Integer.parseInt(pokeStats[5]);
-					this.specialDefense = Integer.parseInt(pokeStats[6]);
-					this.speed = Integer.parseInt(pokeStats[7]);
-				}
-
-			}
-
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		} finally
-		{
-			try
-			{
-				if (br != null)
-					br.close();
-			} catch (IOException ex)
-			{
-				ex.printStackTrace();
-			}
-		}
+		return hp;
 	}
+
+	public void setHp(int hp)
+	{
+		this.hp = hp;
+	}
+
+	public int getAttack()
+	{
+		return attack;
+	}
+
+	public void setAttack(int attack)
+	{
+		this.attack = attack;
+	}
+
+	public int getDefense()
+	{
+		return defense;
+	}
+
+	public void setDefense(int defense)
+	{
+		this.defense = defense;
+	}
+
+	public int getSpecialAttack()
+	{
+		return specialAttack;
+	}
+
+	public void setSpecialAttack(int specialAttack)
+	{
+		this.specialAttack = specialAttack;
+	}
+
+	public int getSpecialDefense()
+	{
+		return specialDefense;
+	}
+
+	public void setSpecialDefense(int specialDefense)
+	{
+		this.specialDefense = specialDefense;
+	}
+
+	public int getSpeed()
+	{
+		return speed;
+	}
+
+	public void setSpeed(int speed)
+	{
+		this.speed = speed;
+	}
+
+	private int attack;
+	private int defense;
+	private int specialAttack;
+	private int specialDefense;
+	private int speed;
+
+	public Pokemon(int id, Context myContext, int numOfLevelUpsToGetLevel)
+	{
+		super(id, myContext);
+
+		// TODO Auto-generated constructor stub
+
+		Bitmap spriteSheet = BitmapFactory.decodeResource(
+				myContext.getResources(), R.drawable.bulbasaur);
+		
+		Log.d("height", spriteSheet.getHeight() + "");
+
+		for (int i = 0; i < 99; ++i)
+		{
+			bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37, spriteSheet.getHeight()));
+
+		}
+
+	}
+
+	/**
+	 * increments the level up by one, increases stats accordingly if the
+	 * pokemon needs to evolve or get a new move, it is in Tower class, where
+	 * this is overridden :)
+	 */
+	public void levelUp()
+	{
+		setLevel(getLevel() + 1);
+
+		this.hp = this.hp + (int) ((getBasehp() / 25) + 1);
+		this.attack = this.attack + (int) ((getBaseattack() / 25) + 1);
+		this.defense = this.defense + (int) ((getBasedefense() / 25) + 1);
+		this.specialAttack = this.specialAttack
+				+ (int) ((getBasespecialAttack() / 25) + 1);
+		this.specialDefense = this.specialDefense
+				+ (int) ((getBasespecialDefense() / 25) + 1);
+		this.speed = this.speed + (int) ((getBasespeed() / 25) + 1);
+
+	}
+
+
+	@Override
+	public String toString()
+	{
+		return name + " " + "level " + getLevel() + " " + "Hit Points " + hp
+				+ " Type " + stringType;
+	}
+	
+	public Bitmap getSprite(int image)
+	{
+		return bitmaps.get(image); 
+	}
+
 }

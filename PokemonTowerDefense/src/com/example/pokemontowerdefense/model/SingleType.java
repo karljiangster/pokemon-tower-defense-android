@@ -3,6 +3,7 @@ import java.util.EnumSet;
 import java.util.Set;
 public enum SingleType implements Type
 {
+	
 	FIRE
 	{
 		@Override

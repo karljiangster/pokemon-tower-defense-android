@@ -49,7 +49,11 @@ public class Move
 					this.typeStringMove = pokeStats[1];
 					this.typeMove = SingleType.valueOf(pokeStats[1].toUpperCase());
 					this.setCategory(pokeStats[2]);
-					this.setPower(Integer.parseInt(pokeStats[3]));
+					//if the power is "-" then power is set to zero
+					if(pokeStats[3].equals("-"))
+						this.setPower(0);
+					else
+						this.setPower(Integer.parseInt(pokeStats[3]));
 					this.accuracy = Integer.parseInt(pokeStats[4]);
 					this.description = pokeStats[7];
 					break;

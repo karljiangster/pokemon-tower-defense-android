@@ -9,12 +9,13 @@ import android.content.res.AssetManager;
 
 public class Move
 {
-	private String type; 
+	private String typeStringMove; 
 	private String category; 
 	private int power; 
 	private int accuracy; 
 	private String description; 
-	String [] pokeStats;
+	private String [] pokeStats;
+	private SingleType typeMove; 
 	
 	/**
 	 * 
@@ -45,7 +46,8 @@ public class Move
 				if(pokeStats[0].equals(name))
 				{
 				
-					this.type = pokeStats[1];
+					this.typeStringMove = pokeStats[1];
+					this.typeMove = SingleType.valueOf(pokeStats[1].toUpperCase());
 					this.setCategory(pokeStats[2]);
 					this.setPower(Integer.parseInt(pokeStats[3]));
 					this.accuracy = Integer.parseInt(pokeStats[4]);
@@ -75,7 +77,7 @@ public class Move
 	}
 	public String toString()
 	{
-		return pokeStats[0] + " " + type + getCategory() + getPower() + accuracy + " description: " + description;
+		return pokeStats[0] + " " + typeStringMove + getCategory() + getPower() + accuracy + " description: " + description;
 	}
 	public int getPower()
 	{
@@ -92,5 +94,21 @@ public class Move
 	public void setCategory(String category)
 	{
 		this.category = category;
+	}
+	public String getTypeStringMove()
+	{
+		return typeStringMove;
+	}
+	public void setTypeStringMove(String typeStringMove)
+	{
+		this.typeStringMove = typeStringMove;
+	}
+	public SingleType getTypeMove()
+	{
+		return typeMove;
+	}
+	public void setTypeMove(SingleType typeMove)
+	{
+		this.typeMove = typeMove;
 	}
 }

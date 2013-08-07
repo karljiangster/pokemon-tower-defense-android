@@ -8,6 +8,7 @@ public class Tower extends BasePokemon
 {
 	private ArrayList<Move> moves = new ArrayList<Move>(); 
 	private int indexOfEquipMove; 
+	public double STAB = 1.0; 
 	
 	/**
 	 * Constructs a tower with the given ID
@@ -25,12 +26,24 @@ public class Tower extends BasePokemon
 	 * @param obj the target
 	 */
 	
-	public void attack(DropObjectTD obj)
+	public void attack(Droppable obj)
 	{
+		
 		int damage; 
+		double weakOrStrong = 1.0; 
+		if(obj.getType().getDefWeaknesses().contains(getEquippedMove().getTypeMove()))
+			weakOrStrong = 2.0;
+		if(obj.getType().getDefStrengths().contains(getEquippedMove().getTypeMove()))
+			weakOrStrong = 0.5; 
+		if(obj.getType().getDefImmunities().contains(getEquippedMove().getTypeMove()))
+			return; // the pokemon is immune to attack, and therefore no damage is done
+		
+		//if the pokemon and the move type are the same, stab is doubled 
+		if(stringType.toUpperCase().equals(getEquippedMove().getTypeStringMove().toUpperCase()))
+			STAB = 2.0; 
 		if(getEquippedMove().getCategory().equals("Special"))
 		{
-				damage = ((((2 * getLevel() / 5 + 2) * getAttack() * getEquippedMove().getPower() / obj) / 50) + 2) * STAB * Weakness/Resistance * RandomNumber / 100
+				damage = (int) (((((2 * getLevel() / 5 + 2) * getAttack() * getEquippedMove().getPower() / obj.getFinalDefense("Special")) / 50) + 2) * STAB); //* Weakness/Resistance * RandomNumber / 100
 		}
 		else if(getEquippedMove().getCategory().equals("Physical"))
 		{

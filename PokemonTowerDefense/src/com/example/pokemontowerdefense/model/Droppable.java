@@ -2,5 +2,8 @@ package com.example.pokemontowerdefense.model;
 
 public interface Droppable
 {
-	public void getDropItem(); 
+	public int getFinalDefense(String attackType);
+	public SingleType getType(); 
+
+	
 }

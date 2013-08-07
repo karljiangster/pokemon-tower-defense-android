@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
-public abstract class BasePokemon extends TDObject
+public abstract class BasePokemon 
 {
 	String name;
 	private int baseid;
@@ -22,6 +22,39 @@ public abstract class BasePokemon extends TDObject
 	private int baselevel;
 	private SingleType type;
 	public String stringType; 
+	private SingleType type2; 
+	
+	
+	public SingleType getType2()
+	{
+		return type2;
+	}
+	public void setType2(SingleType type2)
+	{
+		this.type2 = type2;
+	}
+	public String getStringType2()
+	{
+		return stringType2;
+	}
+	public void setStringType2(String stringType2)
+	{
+		this.stringType2 = stringType2;
+	}
+
+	public String stringType2; 
+	
+	
+	public SingleType getType()
+	{
+		return type;
+	}
+	public void setType(SingleType type)
+	{
+		this.type = type;
+	}
+
+	
 
 	/**
 	 * Constructs a pokemon with a given id. The stats and name will be
@@ -35,6 +68,7 @@ public abstract class BasePokemon extends TDObject
 	 */
 	public BasePokemon(int id, Context myContext)
 	{
+
 		this.baseid = id; 
 		this.baselevel = 1;
 		dealWithTypes(myContext); 
@@ -113,6 +147,8 @@ public abstract class BasePokemon extends TDObject
 				{
 					type = SingleType.valueOf(pokeStats[4].toUpperCase());
 					stringType = pokeStats[4]; 
+					type2 = SingleType.valueOf(pokeStats[pokeStats.length - 1].toUpperCase());
+					stringType = pokeStats[pokeStats.length - 1]; 
 					break; 
 
 				}
@@ -234,4 +270,5 @@ public abstract class BasePokemon extends TDObject
 	{
 		this.baselevel = level;
 	}
+	
 }

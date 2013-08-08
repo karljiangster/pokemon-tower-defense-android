@@ -88,19 +88,24 @@ public class Pokemon extends BasePokemon
 		super(id, myContext);
 
 		// TODO Auto-generated constructor stub
-
-		Bitmap spriteSheet = BitmapFactory.decodeResource(
-				myContext.getResources(), R.drawable.bulbasaur);
-
-		spriteSheet = Bitmap.createScaledBitmap(spriteSheet, 3663, 38, true);
-
-		Log.d("width", spriteSheet.getWidth() + "");
-
-		for (int i = 0; i < 99; ++i)
+		switch(id)
 		{
-			bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37,
-					spriteSheet.getHeight()));
+			case 1:
+			Bitmap spriteSheet = BitmapFactory.decodeResource(
+			myContext.getResources(), R.drawable.bulbasaur);
+			spriteSheet = Bitmap.createScaledBitmap(spriteSheet, 3663, 38, true);
 
+
+			for (int i = 0; i < 99; ++i)
+			{
+				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37,
+						spriteSheet.getHeight()));
+
+			}
+			
+			case 2:
+				
+				
 		}
 
 	}
@@ -134,6 +139,7 @@ public class Pokemon extends BasePokemon
 
 	public Bitmap getSprite(int image)
 	{
+
 		return bitmaps.get(image);
 	}
 

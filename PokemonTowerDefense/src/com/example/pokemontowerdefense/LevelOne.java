@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.pokemontowerdefense.model.Pokemon;
 import com.example.pokemontowerdefense.controller.*;
@@ -20,7 +21,7 @@ public class LevelOne extends Activity
 {
 
 	public ImageView bulbasaur;
-	LinearLayout linear; 
+	RelativeLayout linear; 
 	CustomView display; 
 	
 	@Override
@@ -31,31 +32,7 @@ public class LevelOne extends Activity
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-//		Tower Pika = new Tower(25, LevelOne.this, 30);
-//		System.out.println(Pika);
-//		Move waterGun = new Move("fire blast", LevelOne.this); 
-//		System.out.println(waterGun);
-//		Invader Ratata = new Invader(19, LevelOne.this, 30);
-//		System.out.println(Ratata);
-//		Pika.setEquipMove(0);
-//		System.out.println(Pika.attack(Ratata) + " damage on " + Ratata.getName());
-//		System.out.println(Ratata.getAttacked(Pika.attack(Ratata))+ " is the amount of Hp Ratata has left."); 
-		
-		Pokemon pokemon = new Pokemon(1, this, 1);
-		Bitmap bmp = pokemon.getSprite(0);
-		
-		Canvas canvas = new Canvas();
-		
-		Rect srcRect = new Rect(0,0,bmp.getWidth(), bmp.getHeight());
-		Rect destRect = new Rect(0,0,64,64);
-		
-		canvas.drawBitmap(bmp, srcRect,  destRect, null);
-		
-		bulbasaur = (ImageView) findViewById(R.id.bulbasaur); 
-		bulbasaur.setImageBitmap(bmp); 
-		
-		
-		linear = (LinearLayout) findViewById(R.id.linear_level_one_tower_row1); 
+		linear = (RelativeLayout) findViewById(R.id.relative_level_one_tower_row1); 
 		LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT); 
 		display = new CustomView(LevelOne.this); 
 		display.setLayoutParams(lparams); 

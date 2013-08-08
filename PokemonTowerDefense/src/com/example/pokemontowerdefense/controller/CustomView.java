@@ -24,7 +24,7 @@ public class CustomView extends SurfaceView implements SurfaceHolder.Callback
 		holder = getHolder(); 
 		holder.addCallback(this); 
 		setFocusable(true); 
-		levelOneDisplay = new LevelOneDisplay();
+		levelOneDisplay = new LevelOneDisplay(context);
 		updateThread = new UpdateThread(holder, context, levelOneDisplay, new Handler()); 
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +34,7 @@ public class CustomView extends SurfaceView implements SurfaceHolder.Callback
 		holder = getHolder(); 
 		holder.addCallback(this); 
 		setFocusable(true); 
-		levelOneDisplay = new LevelOneDisplay();
+		levelOneDisplay = new LevelOneDisplay(context);
 		updateThread = new UpdateThread(holder, context, levelOneDisplay, new Handler());
 		// TODO Auto-generated constructor stub
 	}

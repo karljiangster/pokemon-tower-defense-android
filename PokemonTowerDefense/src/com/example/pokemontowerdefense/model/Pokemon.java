@@ -20,6 +20,9 @@ public class Pokemon extends BasePokemon
 	private int specialAttack;
 	private int specialDefense;
 	private int speed;
+	public Bitmap spriteSheet;
+	public int numOfFrames; 
+	public int frameToShow;
 
 	public int getHp()
 	{
@@ -81,20 +84,19 @@ public class Pokemon extends BasePokemon
 		this.speed = speed;
 	}
 
-	
-
 	public Pokemon(int id, Context myContext, int numOfLevelUpsToGetLevel)
 	{
 		super(id, myContext);
-
-		// TODO Auto-generated constructor stub
-		switch(id)
+		
+		frameToShow = 0; 
+		
+		switch (id)
 		{
-			case 1:
-			Bitmap spriteSheet = BitmapFactory.decodeResource(
-			myContext.getResources(), R.drawable.bulbasaur);
-			spriteSheet = Bitmap.createScaledBitmap(spriteSheet, 3663, 38, true);
-
+		case 1:
+			spriteSheet = BitmapFactory.decodeResource(
+					myContext.getResources(), R.drawable.bulbasaur);
+			spriteSheet = Bitmap
+					.createScaledBitmap(spriteSheet, 3663, 38, true);
 
 			for (int i = 0; i < 99; ++i)
 			{
@@ -102,10 +104,57 @@ public class Pokemon extends BasePokemon
 						spriteSheet.getHeight()));
 
 			}
+			numOfFrames = 98;
+			break;
+		case 2:
+			spriteSheet = BitmapFactory.decodeResource(
+					myContext.getResources(), R.drawable.ivysaur);
 			
-			case 2:
-				
-				
+			Log.d("Height", "spritesheet height " + spriteSheet.getHeight());
+			
+			spriteSheet = Bitmap
+					.createScaledBitmap(spriteSheet, 6438, 51, true);
+			
+			Log.d("Height", "spritesheet after scale " + spriteSheet.getHeight());
+
+			for (int i = 0; i < 111; ++i)
+			{
+				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 58, 0, 58,
+						spriteSheet.getHeight()));
+				if(i < 3)
+					System.out.println("Width " + bitmaps.get(i).getWidth());
+
+			}
+			numOfFrames = 110;
+			break;
+//		case 3:
+//			spriteSheet = BitmapFactory.decodeResource(
+//					myContext.getResources(), R.drawable.venasaur);
+//			spriteSheet = Bitmap
+//					.createScaledBitmap(spriteSheet, 4362, 71, true);
+//
+//			for (int i = 0; i < 99; ++i)
+//			{
+//				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37,
+//						spriteSheet.getHeight()));
+//
+//			}
+//			break;
+			
+			case 4:
+			spriteSheet = BitmapFactory.decodeResource(
+					myContext.getResources(), R.drawable.charmander);
+			spriteSheet = Bitmap
+					.createScaledBitmap(spriteSheet, 4494, 42, true);
+
+			for (int i = 0; i < 107; ++i)
+			{
+				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 42, 0, 42,
+						spriteSheet.getHeight()));
+
+			}
+			numOfFrames = 106;
+			break;
 		}
 
 	}
@@ -136,11 +185,29 @@ public class Pokemon extends BasePokemon
 		return name + " " + "level " + getLevel() + " " + "Hit Points " + hp
 				+ " Type " + stringType;
 	}
-
-	public Bitmap getSprite(int image)
+	/**
+	 * checks if the cycle is over, then increments frameToShow, thus, what is returned is the frameToShow + 1 or starts over
+	 * @return A Bitmap based on the frame needed to be shown
+	 */
+	public Bitmap getSprite()
 	{
-
-		return bitmaps.get(image);
+		if(checkCycleFramesOver())
+		{
+			frameToShow = 0; 
+			return bitmaps.get(frameToShow);
+		}
+		
+		++frameToShow; 
+		return bitmaps.get(frameToShow);
+		
+	}
+	/**
+	 * 
+	 * @return True if the frame is on the last frame on the spriteSheet, false if the frame is still in.
+	 */
+	public boolean checkCycleFramesOver()
+	{
+		return frameToShow >= numOfFrames;
 	}
 
 }

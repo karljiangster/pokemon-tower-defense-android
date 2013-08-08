@@ -5,6 +5,13 @@ import android.content.Context;
 public class Invader extends Pokemon implements Droppable
 {
 	int gold;
+	public int x_velocity = 1;
+	public int y_velocity = 1; 
+	public int x_coordinate = 0;
+	public int y_coordinate = 0; 
+	
+	
+	
 
 	public Invader(int id, Context myContext, int numOfLevelUpsToGetLevel)
 	{
@@ -16,17 +23,26 @@ public class Invader extends Pokemon implements Droppable
 			++i;
 		}
 	}
-
-	/**
-	 * depending in the speed of the Invader, the Invader will move at a certain
-	 * speed
-	 */
-	public void move()
-	{
-
-	}
-
 	
+	/**
+	 *  makes the pokemon move, if the bounds, or the parameters are hit, then the pokemon will move. :3 
+	 * @param x2 right max
+	 * @param y2 down max
+	 */
+	public void move(int x2, int y2)
+	{
+		if(x_coordinate - 10 <= 0 )
+			x_velocity *= - 1;
+		if(x_coordinate + 10 >= x2)
+			x_velocity *= - 1;
+		if(y_coordinate - 10 <= 0)
+			y_coordinate *= -1;
+		if(y_coordinate - 10 <= 0)
+			y_coordinate *= -1;
+		
+		x_coordinate+=x_velocity; 
+		y_coordinate+=y_velocity; 
+	}
 	public void getDropItem()
 	{
 		// TODO Auto-generated method stub

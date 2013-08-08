@@ -18,6 +18,7 @@ public class CustomView extends SurfaceView implements SurfaceHolder.Callback
 	private LevelOneDisplay levelOneDisplay; 
 	SurfaceHolder holder;  
 	
+	
 	public CustomView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		holder = getHolder(); 

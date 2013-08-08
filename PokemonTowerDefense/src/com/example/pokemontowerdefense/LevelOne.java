@@ -8,14 +8,21 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.pokemontowerdefense.model.Pokemon;
+import com.example.pokemontowerdefense.controller.*;
+
 
 public class LevelOne extends Activity
 {
 
-	ImageView bulbasaur; 
+	public ImageView bulbasaur;
+	LinearLayout linear; 
+	CustomView display; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -35,8 +42,6 @@ public class LevelOne extends Activity
 //		System.out.println(Ratata.getAttacked(Pika.attack(Ratata))+ " is the amount of Hp Ratata has left."); 
 		
 		Pokemon pokemon = new Pokemon(1, this, 1);
-	
-		
 		Bitmap bmp = pokemon.getSprite(0);
 		
 		Canvas canvas = new Canvas();
@@ -48,6 +53,14 @@ public class LevelOne extends Activity
 		
 		bulbasaur = (ImageView) findViewById(R.id.bulbasaur); 
 		bulbasaur.setImageBitmap(bmp); 
+		
+		
+		linear = (LinearLayout) findViewById(R.id.linear_level_one_tower_row1); 
+		LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT); 
+		display = new CustomView(LevelOne.this); 
+		display.setLayoutParams(lparams); 
+		linear.addView(display); 
+	
 		
 		
 	}

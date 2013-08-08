@@ -8,14 +8,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LevelOne" >
 
-    <ImageView
-        android:id="@+id/bulbasaur"
+    <LinearLayout
+        android:id="@+id/linear_level_one_tower_row1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="34dp"
-        android:src="@drawable/bulbasaur" />
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/bulbasaur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="34dp"
+            android:src="@drawable/bulbasaur" />
+
+    </LinearLayout>
 
 </RelativeLayout>

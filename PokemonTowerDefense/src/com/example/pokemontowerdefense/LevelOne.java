@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.example.pokemontowerdefense.model.Pokemon;
 
 public class LevelOne extends Activity
 {
 
+	ImageView bulbasaur; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -43,6 +45,9 @@ public class LevelOne extends Activity
 		Rect destRect = new Rect(0,0,64,64);
 		
 		canvas.drawBitmap(bmp, srcRect,  destRect, null);
+		
+		bulbasaur = (ImageView) findViewById(R.id.bulbasaur); 
+		bulbasaur.setImageBitmap(bmp); 
 		
 		
 	}

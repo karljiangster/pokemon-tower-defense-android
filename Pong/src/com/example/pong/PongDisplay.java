@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.Rectangle2D;
-import java.awt.Rectangle;
 
 public class PongDisplay {
 	
@@ -57,7 +54,7 @@ public class PongDisplay {
 	}
 	public void draw(Canvas canvas, Paint paint)
 	{
-		ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>(); 
+		
 		canvas.drawRGB(20, 20, 20); 
 		//ARGB 0 -255 color values 
 		paint.setARGB(255 , 100 , 100, 255);

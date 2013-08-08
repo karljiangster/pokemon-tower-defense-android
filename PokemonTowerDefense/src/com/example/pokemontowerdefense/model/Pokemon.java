@@ -15,6 +15,11 @@ public class Pokemon extends BasePokemon
 	private ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
 
 	private int hp;
+	private int attack;
+	private int defense;
+	private int specialAttack;
+	private int specialDefense;
+	private int speed;
 
 	public int getHp()
 	{
@@ -76,11 +81,7 @@ public class Pokemon extends BasePokemon
 		this.speed = speed;
 	}
 
-	private int attack;
-	private int defense;
-	private int specialAttack;
-	private int specialDefense;
-	private int speed;
+	
 
 	public Pokemon(int id, Context myContext, int numOfLevelUpsToGetLevel)
 	{
@@ -90,12 +91,15 @@ public class Pokemon extends BasePokemon
 
 		Bitmap spriteSheet = BitmapFactory.decodeResource(
 				myContext.getResources(), R.drawable.bulbasaur);
-		
-		Log.d("height", spriteSheet.getHeight() + "");
+
+		spriteSheet = Bitmap.createScaledBitmap(spriteSheet, 3663, 38, true);
+
+		Log.d("width", spriteSheet.getWidth() + "");
 
 		for (int i = 0; i < 99; ++i)
 		{
-			bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37, spriteSheet.getHeight()));
+			bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37,
+					spriteSheet.getHeight()));
 
 		}
 
@@ -121,17 +125,16 @@ public class Pokemon extends BasePokemon
 
 	}
 
-
 	@Override
 	public String toString()
 	{
 		return name + " " + "level " + getLevel() + " " + "Hit Points " + hp
 				+ " Type " + stringType;
 	}
-	
+
 	public Bitmap getSprite(int image)
 	{
-		return bitmaps.get(image); 
+		return bitmaps.get(image);
 	}
 
 }

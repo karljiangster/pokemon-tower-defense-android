@@ -37,9 +37,9 @@ public class LevelOneDisplay
 		
 		stage = BitmapFactory.decodeResource(
 				context.getResources(), R.drawable.levelonestage);
-		stage = Bitmap.createScaledBitmap(stage, 384, 1330, true);
+		stage = Bitmap.createScaledBitmap(stage, display_width, display_height, true);
 		
-		Rect destRect = new Rect(0,0,384, 1130);
+		Rect destRect = new Rect(0,0,display_width, display_height);
 		canvas.drawBitmap(stage, null,  destRect, null);
 		
 		
@@ -47,17 +47,23 @@ public class LevelOneDisplay
 		pokemon = new Pokemon[10];
 		bmp = new Bitmap[10];
 		
-		pokemon[0] = new Invader(1,context,1);
-		bmp[0] = pokemon[0].getSprite();
+//		pokemon[0] = new Invader(1,context,1);
+//		bmp[0] = pokemon[0].getSprite();
+//		
+//		pokemon[1] = new Invader(2,context,30);
+//		bmp[1] = pokemon[1].getSprite();
+//		
+//		
+//		pokemon[3] = new Invader(4,context,1);
+//		bmp[3] = pokemon[3].getSprite();
 		
-		pokemon[1] = new Invader(2,context,30);
-		bmp[1] = pokemon[1].getSprite(frameV);
-		x_vena = bmp[1].getWidth();
-		y_vena = bmp[1].getWidth();
-		
-		pokemon[3] = new Invader(4,context,1);
-		bmp[3] = pokemon[3].getSprite(frameCharmander);
-
+		for(int i = 0; i < 4; ++i)
+		{
+			pokemon[i] = new Invader(i + 5, context, 5); 
+			bmp[i] = pokemon[i].getSprite(); 
+			((Invader)pokemon[i]).x_coordinate = i*200;
+			((Invader)pokemon[i]).y_coordinate = i*200;
+		}
 	}
 
 	public void update(Canvas canvas, Paint paint)
@@ -66,25 +72,14 @@ public class LevelOneDisplay
 		display_width = canvas.getWidth(); 
 		
 		
-		frameB++;
-		if(frameB >=98){
-			frameB =0;
-		}
-		frameV++;
-		if(frameV >=111){
-			frameV =0;
-		}
-		frameCharmander++;
-		if(frameCharmander>= 106)
-			frameCharmander = 0;
 		
-		if(x_bulb == stage.getWidth())
-		x_bulb++;
-		y_bulb++;
-		x_vena++;
-		y_vena++;
-		x_charmander++;
-		y_charmander++; 
+		for(int i = 0; i < 4; ++i)
+		{
+			pokemon[i].getSprite();
+			((Invader) pokemon[i]).move(display_width,display_height);
+			bmp[i] = pokemon[i].getSprite(); 
+		}
+		
 
 	}
 
@@ -93,20 +88,18 @@ public class LevelOneDisplay
 		
 //		canvas.drawRGB(0, 0, 0);
 	
-			Rect destRect = new Rect(0,0,384, 1130);
+			Rect destRect = new Rect(0,0,display_width, display_height);
 			canvas.drawBitmap(stage, null,  destRect, null);
-			
-			bmp[0] = pokemon[0].getSprite(frameB); 
-			Rect srcRect2 = new Rect(0,0,38, 38);
-			Rect destRect2 = new Rect(x_bulb, y_bulb, x_bulb + bmp[0].getWidth(), y_bulb + bmp[0].getWidth());
-
-			canvas.drawBitmap(bmp[0], srcRect2,  destRect2, null);
-			
-			bmp[3] = pokemon[3].getSprite(frameCharmander); 
-			Rect srcRect1 = new Rect(0,0,38, 38);
-			Rect destRect1 = new Rect(x_charmander, y_charmander , x_charmander + bmp[0].getWidth(), y_charmander + bmp[0].getWidth());
-
-			canvas.drawBitmap(bmp[3], srcRect1,  destRect1, null);
+	
+			for(int i = 0; i < 4; ++i)
+			{
+				
+				Rect destPokeRect = new Rect(((Invader)pokemon[i]).x_coordinate, ((Invader)pokemon[i]).y_coordinate, 
+						((Invader)pokemon[i]).x_coordinate + bmp[i].getWidth(), 
+						((Invader)pokemon[i]).y_coordinate + bmp[i].getHeight() );
+				
+				canvas.drawBitmap(bmp[i], null, destPokeRect, null);
+			}
 	}
 	
 }

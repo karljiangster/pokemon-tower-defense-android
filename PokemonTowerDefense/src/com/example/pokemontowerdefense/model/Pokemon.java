@@ -127,19 +127,20 @@ public class Pokemon extends BasePokemon
 			}
 			numOfFrames = 110;
 			break;
-//		case 3:
-//			spriteSheet = BitmapFactory.decodeResource(
-//					myContext.getResources(), R.drawable.venasaur);
-//			spriteSheet = Bitmap
-//					.createScaledBitmap(spriteSheet, 4362, 71, true);
-//
-//			for (int i = 0; i < 99; ++i)
-//			{
-//				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 37, 0, 37,
-//						spriteSheet.getHeight()));
-//
-//			}
-//			break;
+		case 3:
+			spriteSheet = BitmapFactory.decodeResource(
+					myContext.getResources(), R.drawable.venasaur);
+			spriteSheet = Bitmap
+					.createScaledBitmap(spriteSheet, 14362, 71, true);
+
+			for (int i = 0; i < 167; ++i)
+			{
+				bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 86, 0, 86,
+						spriteSheet.getHeight()));
+
+			}
+			numOfFrames = 166; 
+			break;
 			
 			case 4:
 			spriteSheet = BitmapFactory.decodeResource(
@@ -155,6 +156,80 @@ public class Pokemon extends BasePokemon
 			}
 			numOfFrames = 106;
 			break;
+			
+			case 5:
+				spriteSheet = BitmapFactory.decodeResource(
+						myContext.getResources(), R.drawable.charmeleon);
+				spriteSheet = Bitmap
+						.createScaledBitmap(spriteSheet, 6141, 56, true);
+
+				for (int i = 0; i < 89; ++i)
+				{
+					bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 69, 0, 69,
+							spriteSheet.getHeight()));
+
+				}
+				numOfFrames = 88;
+				break;
+				
+			case 6:
+				spriteSheet = BitmapFactory.decodeResource(
+						myContext.getResources(), R.drawable.charzard);
+				spriteSheet = Bitmap
+						.createScaledBitmap(spriteSheet, 12727, 91, true);
+
+				for (int i = 0; i < 143; ++i)
+				{
+					bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 89, 0, 89,
+							spriteSheet.getHeight()));
+
+				}
+				numOfFrames = 142;
+				break;
+			case 7:
+				spriteSheet = BitmapFactory.decodeResource(
+						myContext.getResources(), R.drawable.squirtle);
+				spriteSheet = Bitmap
+						.createScaledBitmap(spriteSheet, 1989, 43, true);
+
+				for (int i = 0; i < 51; ++i)
+				{
+					bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 39, 0, 39,
+							spriteSheet.getHeight()));
+
+				}
+				numOfFrames = 50;
+				break;
+				
+			case 8:
+				spriteSheet = BitmapFactory.decodeResource(
+						myContext.getResources(), R.drawable.wartortle);
+				spriteSheet = Bitmap
+						.createScaledBitmap(spriteSheet, 5307, 61, true);
+
+				for (int i = 0; i < 87; ++i)
+				{
+					bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 61, 0, 61,
+							spriteSheet.getHeight()));
+
+				}
+				numOfFrames = 86;
+				break;
+				
+			case 9:
+				spriteSheet = BitmapFactory.decodeResource(
+						myContext.getResources(), R.drawable.blastoise);
+				spriteSheet = Bitmap
+						.createScaledBitmap(spriteSheet, 16836, 65, true);
+
+				for (int i = 0; i < 138; ++i)
+				{
+					bitmaps.add(Bitmap.createBitmap(spriteSheet, i * 122, 0, 122,
+							spriteSheet.getHeight()));
+
+				}
+				numOfFrames = 137;
+				break;
 		}
 
 	}

@@ -5,8 +5,8 @@ import android.content.Context;
 public class Invader extends Pokemon implements Droppable
 {
 	int gold;
-	public int x_velocity = 1;
-	public int y_velocity = 1; 
+	public int x_velocity = 3;
+	public int y_velocity = 3; 
 	public int x_coordinate = 0;
 	public int y_coordinate = 0; 
 	
@@ -31,14 +31,14 @@ public class Invader extends Pokemon implements Droppable
 	 */
 	public void move(int x2, int y2)
 	{
-		if(x_coordinate - 10 <= 0 )
+		if(x_coordinate - 20 <= 0 )
 			x_velocity *= - 1;
-		if(x_coordinate + 10 >= x2)
+		if(x_coordinate + 20 >= x2)
 			x_velocity *= - 1;
-		if(y_coordinate - 10 <= 0)
-			y_coordinate *= -1;
-		if(y_coordinate - 10 <= 0)
-			y_coordinate *= -1;
+		if(y_coordinate - 20 <= 0)
+			y_velocity *= -1;
+		if(y_coordinate + 20 <= y2)
+			y_velocity *= -1;
 		
 		x_coordinate+=x_velocity; 
 		y_coordinate+=y_velocity; 

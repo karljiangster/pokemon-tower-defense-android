@@ -31,13 +31,13 @@ public class Invader extends Pokemon implements Droppable
 	 */
 	public void move(int x2, int y2)
 	{
-		if(x_coordinate - 20 <= 0 )
+		if(x_coordinate  <= 0 )
 			x_velocity *= - 1;
-		if(x_coordinate + 20 >= x2)
+		if(x_coordinate + 50 >= x2)
 			x_velocity *= - 1;
-		if(y_coordinate - 20 <= 0)
+		if(y_coordinate  <= 0)
 			y_velocity *= -1;
-		if(y_coordinate + 20 <= y2)
+		if(y_coordinate  <= y2)
 			y_velocity *= -1;
 		
 		x_coordinate+=x_velocity; 

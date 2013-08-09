@@ -61,8 +61,9 @@ public class LevelOneDisplay
 		{
 			pokemon[i] = new Invader(i + 5, context, 5); 
 			bmp[i] = pokemon[i].getSprite(); 
-			((Invader)pokemon[i]).x_coordinate = i*200;
-			((Invader)pokemon[i]).y_coordinate = i*200;
+			((Invader)pokemon[i]).x_coordinate = 1+ i*200;
+			((Invader)pokemon[i]).y_coordinate = 1+ i*200;
+			System.out.println("coordinate of " + pokemon[i] + " is " + ((Invader)pokemon[i]).x_coordinate + " , " + ((Invader)pokemon[i]).y_coordinate);
 		}
 	}
 
@@ -71,7 +72,8 @@ public class LevelOneDisplay
 		display_height = canvas.getHeight(); 
 		display_width = canvas.getWidth(); 
 		
-		
+		System.out.println(display_height + " is the height");
+		System.out.println(display_width + " is the with");
 		
 		for(int i = 0; i < 4; ++i)
 		{
